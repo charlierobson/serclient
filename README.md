@@ -1,16 +1,27 @@
-More of a server really. I should probably rename the output too.
+More of a server really.
 
-### Compile the source with MONO:
+Use with LOAD "$" on ZXpand+ or the 'TROLL' release firmware for ZXpand classic.
 
-mcs Program.cs
+---
+
+### 1. If necessary, compile the source with MONO:
+
+mcs zxsvr.cs
+
+The supplied pre-compiled .net assembly should work out of the box. I think. Possibly.
 
 ### Run the compiled exe under mono on Linux and OSX. Natively on Windows.
 
-mono Program.exe [path to P file to serve] [com port name]
+Supply the following parameters:
+* path to P file to serve
+* com port name
 
 e.g:
 
-* charlie$ mono Program.exe 3dmm.p /dev/ttl.usb01
+* charlie$ mono zxsvr.exe 3dmm.p /dev/ttl.usb01whatever
 
-* c:> program 3dmm.p COM13
+* c:\charlie> zxsvr 3dmm.p COM13
 
+---
+
+Included is the magnificent UWOL and an Arduino sketch that I used for initial development. It's since proved useful for debugging.
