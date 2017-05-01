@@ -37,7 +37,7 @@ class Program
 
             Console.WriteLine($"Using serial port '{serialPortString}'");
 
-            var serial = new SerialPort(serialPortString, 115200) {ReadTimeout = 400};
+            var serial = new SerialPort(serialPortString, 38400) {ReadTimeout = 400};
             serial.Open();
 
             var pBytes = File.ReadAllBytes(args[0]);
@@ -50,7 +50,7 @@ class Program
                 try
                 {
                     var b = (byte) serial.ReadByte();
-                    Console.Write($"\n {(char)b}");
+                    Console.Write($"\n {(char)b} ");
 
                     if (b == 'I')
                     {
@@ -72,13 +72,12 @@ class Program
                     }
                     else if (b == 'X')
                     {
-                        Console.Write($" -> OK");
+                        Console.Write($" -> OK\n");
                         state = XmitState.Done;
                     }
                     else
                     {
-                        Console.Write(" !Error!");
-                        state = XmitState.Error;
+                        Console.Write(" ?");
                     }
                 }
                 catch (TimeoutException)
