@@ -10,7 +10,7 @@ mcs zxsvr.cs
 
 The supplied pre-compiled .net assembly should work out of the box. I think. Possibly.
 
-### Run the compiled exe under mono on Linux and OSX. Natively on Windows.
+### 2. Run the compiled exe under mono on Linux and OSX. Natively on Windows.
 
 Supply the following parameters:
 * path to P file to serve

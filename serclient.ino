@@ -1,19 +1,21 @@
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(38400);
 }
 
-static byte block = 0;
-static int fileLen;
 
 void loop() {
+  static byte block = 0;
+  static int fileLen;
+  
   // clear flush the serial input buffer
   while(Serial.available()) Serial.read(); 
 
   // request length
   Serial.write('I');
   while(Serial.available() < 2);
-  fileLen = Serial.read() + 256 * Serial.read();
+  fileLen = Serial.read()
+  fileLen += 256 * Serial.read();
 
   while(fileLen > 0)
   {
@@ -37,16 +39,15 @@ void loop() {
 
     // bacon received, get checksum
     while(Serial.available() < 2);
-    unsigned short rxdsum = Serial.read() + 256 * Serial.read();
+    unsigned short rxdsum = Serial.read();
+    rxdsum += 256 * Serial.read();
 
-    // problem?
     if (calcsum == rxdsum) {
+      // move on
       fileLen -= 256;
       ++block;
- 
-      // flush
-      while(Serial.available()) Serial.read(); 
     }
+    // else re-request the last block
   }
 }
 
